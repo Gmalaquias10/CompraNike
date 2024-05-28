@@ -1,0 +1,48 @@
+package primeiro_teste;
+
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Teste_Compra {
+
+	WebDriver driver;
+	
+	
+	@Before
+	public void precondicao(){
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\anton\\Documents\\chromedriver\\chromedriver\\chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.get("https://www.nike.com.br/"); 
+			driver.manage().window().maximize();
+
+	}
+	
+	@Test
+	public void testeCompra() throws InterruptedException{
+		driver.findElement(By.xpath("//button[@class='ButtonFill__StyledButton-sc-d418d4ee-0 djoXVp']")).click();
+		Thread.Sleep(5000);
+		driver.findElement(By.name("search")).sendKeys("Regata Dallas");
+		Thread.Sleep(5000);
+		driver.findElement(By.xpath("//button[@class='ButtonIcon__StyledButton-sc-wd4o68-0 hScimd']")).click();		
+		Thread.Sleep(5000);
+		driver.findElement(By.xpath("//div[@class='ProductCard-styled__ProductName-sc-8f840517-9 iKtbYK']")).click();
+		Thread.Sleep(5000);
+		driver.findElement(By.xpath("//input[@data-testid='product-size-GG']")).click();
+		Thread.Sleep(5000);
+		driver.findElement(By.xpath("//button[@class='ButtonFill__StyledButton-sc-d418d4ee-0 hYCukR']")).click();
+	}
+	
+	@After
+	
+	public void posCondicao(){
+		driver.quit();
+	}
+}
